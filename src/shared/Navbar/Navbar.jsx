@@ -1,4 +1,23 @@
+import { Link } from "react-router-dom";
+
 const Navbar = () => {
+  const navItems = (
+    <>
+      <li>
+        <Link>Home</Link>
+      </li>
+      <li>
+        <Link>Instructors</Link>
+      </li>
+      <li>
+        <Link>Classes</Link>
+      </li>
+      <li>
+        <Link>Dashboard </Link>
+      </li>
+    </>
+  );
+
   return (
     <div>
       <div className="navbar bg-base-100">
@@ -24,52 +43,18 @@ const Navbar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+              {navItems}
             </ul>
           </div>
           <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li tabIndex={0}>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
-          </ul>
+          <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
         <div className="navbar-end">
-          <a className="btn">Button</a>
+          <div>
+            <Link>Login</Link>
+          </div>
         </div>
       </div>
     </div>
