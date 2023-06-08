@@ -1,6 +1,8 @@
 import { useForm } from "react-hook-form";
 import "./register.css";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
 
 const Register = () => {
   const [password, setPassword] = useState("");
@@ -11,7 +13,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    const photo = data.photoURL;
+    const photo = data.photo;
     const name = data.name;
     const email = data.email;
     const password = data.password;
@@ -108,8 +110,34 @@ const Register = () => {
 
                 <p>{password}</p>
               </div>
+              <div className="form-control w-full max-w-xs">
+                <label className="label">
+                  <span className="label-text">Photo</span>
+                </label>
+                <input
+                  type="file"
+                  name="photo"
+                  {...register("photo", { required: true })}
+                  className="file-input file-input-bordered w-full max-w-xs"
+                />
+              </div>
               <div className="form-control mt-6">
                 <input className="btn btn-primary" type="submit" value="Register" />
+              </div>
+              <div className="flex items-center justify-between mt-4">
+                <div>
+                  <small>
+                    Already have an account? Please{" "}
+                    <Link to="/login" className="font-bold">
+                      Login
+                    </Link>
+                  </small>
+                </div>
+                <div>
+                  <button className="btn btn-circle btn-outline btn-sm">
+                    <FaGoogle></FaGoogle>
+                  </button>
+                </div>
               </div>
             </form>
           </div>
