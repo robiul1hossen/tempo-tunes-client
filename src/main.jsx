@@ -3,11 +3,14 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./Routes/Routes.jsx";
+import AuthProviders from "./providers/AuthProviders";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <div className="max-w-screen-xl mx-auto">
-    <React.StrictMode>
-      <RouterProvider router={router} />
-    </React.StrictMode>
-  </div>
+  <React.StrictMode>
+    <AuthProviders>
+      <div className="max-w-screen-xl mx-auto">
+        <RouterProvider router={router} />
+      </div>
+    </AuthProviders>
+  </React.StrictMode>
 );

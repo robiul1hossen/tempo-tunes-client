@@ -1,17 +1,21 @@
 import { useForm } from "react-hook-form";
 import "./register.css";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
+import { AuthContext } from "../../providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [password, setPassword] = useState("");
-  //   const [disable, setDisable] = useState(true);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const { createUser, signInGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
   const onSubmit = (data) => {
     const photo = data.photo;
     const name = data.name;
@@ -25,11 +29,37 @@ const Register = () => {
     if (password === confirm_password) {
       setPassword("");
     }
+    createUser(email, password)
+      .then((result) => {
+        const createdUser = result.user;
+        console.log(createdUser);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Account Created Successfully ",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const handleGoogleSignIn = () => {
+    console.log("clicked");
+    signInGoogle()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
     <div>
-      <h2>this is register</h2>
       <div className="hero min-h-screen main-register my-5">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-center text-white md:w-1/2">
@@ -124,22 +154,22 @@ const Register = () => {
               <div className="form-control mt-6">
                 <input className="btn btn-primary" type="submit" value="Register" />
               </div>
-              <div className="flex items-center justify-between mt-4">
-                <div>
-                  <small>
-                    Already have an account? Please{" "}
-                    <Link to="/login" className="font-bold">
-                      Login
-                    </Link>
-                  </small>
-                </div>
-                <div>
-                  <button className="btn btn-circle btn-outline btn-sm">
-                    <FaGoogle></FaGoogle>
-                  </button>
-                </div>
-              </div>
             </form>
+            <div className="flex items-center justify-between mt-4">
+              <div>
+                <small>
+                  Already have an account? Please{" "}
+                  <Link to="/login" className="font-bold">
+                    Login
+                  </Link>
+                </small>
+              </div>
+              <div>
+                <button onClick={handleGoogleSignIn} className="btn btn-circle btn-outline btn-sm">
+                  <FaGoogle></FaGoogle>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

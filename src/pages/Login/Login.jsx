@@ -1,7 +1,15 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
+import Swal from "sweetalert2";
+import { useContext } from "react";
 
-const Register = () => {
+const Login = () => {
+  const { LoginUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
   const {
     register,
     handleSubmit,
@@ -10,12 +18,28 @@ const Register = () => {
   const onSubmit = (data) => {
     const email = data.email;
     const password = data.password;
-    console.log(email, password);
+
+    LoginUser(email, password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User Logged in successfully ",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+        navigate(from, { replace: true });
+      })
+      .then((error) => {
+        console.log(error);
+      });
   };
 
   return (
     <div>
-      <h2>this is register</h2>
       <div className="hero min-h-screen main-register my-5">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-center text-white md:w-1/2">
@@ -88,4 +112,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
