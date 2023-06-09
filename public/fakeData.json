@@ -1,0 +1,65 @@
+[
+  {
+    "instrument": "Piano",
+    "instructor": "John Doe",
+    "price": 50,
+    "seats": 10,
+    "image": "https://i.ibb.co/LtNr0DR/5.jpg"
+  },
+  {
+    "instrument": "Guitar",
+    "instructor": "Jane Smith",
+    "price": 40,
+    "seats": 8,
+    "image": "https://i.ibb.co/pJtGzpB/6.jpg"
+  },
+  {
+    "instrument": "Violin",
+    "instructor": "Michael Johnson",
+    "price": 45,
+    "seats": 12,
+    "image": "https://i.ibb.co/KXJyHWY/7.jpg"
+  },
+  {
+    "instrument": "Drums",
+    "instructor": "Sarah Davis",
+    "price": 60,
+    "seats": 6,
+    "image": "https://i.ibb.co/d4Tt9tb/8.jpg"
+  },
+  {
+    "instrument": "Flute",
+    "instructor": "David Wilson",
+    "price": 35,
+    "seats": 10,
+    "image": "https://i.ibb.co/mBzbDxH/9.jpg"
+  },
+  {
+    "instrument": "Saxophone",
+    "instructor": "Emily Thompson",
+    "price": 55,
+    "seats": 8,
+    "image": "https://i.ibb.co/R3SKL4v/1.jpg"
+  },
+  {
+    "instrument": "Trumpet",
+    "instructor": "Robert Brown",
+    "price": 50,
+    "seats": 10,
+    "image": "https://i.ibb.co/s2h957W/2.jpg"
+  },
+  {
+    "instrument": "Cello",
+    "instructor": "Olivia Johnson",
+    "price": 45,
+    "seats": 12,
+    "image": "https://i.ibb.co/df5Nfvv/3.jpg"
+  },
+  {
+    "instrument": "Bass Guitar",
+    "instructor": "Daniel Wilson",
+    "price": 40,
+    "seats": 8,
+    "image": "https://i.ibb.co/vkQqr5t/4.jpg"
+  }
+]

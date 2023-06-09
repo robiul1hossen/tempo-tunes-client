@@ -12,9 +12,10 @@ const Register = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
-  const { createUser, signInGoogle } = useContext(AuthContext);
+  const { createUser, signInGoogle, updateUserProfile } = useContext(AuthContext);
   const navigate = useNavigate();
   const onSubmit = (data) => {
     const photo = data.photo;
@@ -32,15 +33,38 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const createdUser = result.user;
-        console.log(createdUser);
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Account Created Successfully ",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/");
+        // update profile
+        return updateUserProfile(name, photo)
+          .then(() => {
+            console.log("user profile updated");
+            const savedUser = { name: data.name, email: data.email };
+            console.log(savedUser);
+            fetch("http://localhost:5000/students", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(savedUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  reset();
+                  Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "User created successfully.",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  navigate("/");
+                }
+              });
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        // update profile
       })
       .catch((error) => {
         console.log(error);
@@ -144,11 +168,18 @@ const Register = () => {
                 <label className="label">
                   <span className="label-text">Photo</span>
                 </label>
-                <input
+                {/* <input
                   type="file"
                   name="photo"
                   {...register("photo", { required: true })}
                   className="file-input file-input-bordered w-full max-w-xs"
+                /> */}
+                <input
+                  type="text"
+                  {...register("photo", { required: true })}
+                  placeholder="Photo"
+                  name="photo"
+                  className="input input-bordered"
                 />
               </div>
               <div className="form-control mt-6">

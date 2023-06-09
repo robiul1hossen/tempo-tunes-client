@@ -5,6 +5,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Dashboard from "../Main/Dashboard/Dashboard";
 import PrivateRoute from "../pages/PrivateRoute/PrivateRoute";
+import AllStudents from "../pages/Dashboard/AllStudents";
 
 export const router = createBrowserRouter([
   {
@@ -23,13 +24,19 @@ export const router = createBrowserRouter([
         path: "/register",
         element: <Register></Register>,
       },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
       {
-        path: "/dashboard",
-        element: (
-          <PrivateRoute>
-            <Dashboard></Dashboard>
-          </PrivateRoute>
-        ),
+        path: "allstudents",
+        element: <AllStudents></AllStudents>,
       },
     ],
   },
