@@ -11,6 +11,7 @@ import StudentHome from "../pages/Dashboard/StudentDahsboard/StudentHome";
 import AddAClass from "../pages/Dashboard/InstructorDashboard/AddAClass";
 import MyClasses from "../pages/Dashboard/InstructorDashboard/MyClasses/MyClasses";
 import InstructorPage from "../pages/Home/InstructorPage/InstructorPage";
+import ManageClasses from "../pages/Dashboard/AdminDashboard/ManageClasses";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        path: "manageclasses",
+        element: <ManageClasses></ManageClasses>,
+      },
       {
         path: "allstudents",
         element: <AllStudents></AllStudents>,

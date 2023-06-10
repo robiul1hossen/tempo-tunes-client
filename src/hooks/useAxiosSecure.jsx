@@ -2,6 +2,7 @@ import { useContext, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
+import { useQueryClient } from "react-query";
 
 const axiosSecure = axios.create({
   baseURL: "http://localhost:5000",
@@ -10,6 +11,7 @@ const axiosSecure = axios.create({
 const useAxiosSecure = () => {
   const { logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   useEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
@@ -30,7 +32,15 @@ const useAxiosSecure = () => {
         return Promise.reject(error);
       }
     );
-  }, [logOut, navigate]);
+
+    // Add a response interceptor to invalidate query cache on successful PUT requests
+    axiosSecure.interceptors.response.use((response) => {
+      if (response.config.method === "put" && response.status === 200) {
+        queryClient.invalidateQueries(response.config.url);
+      }
+      return response;
+    });
+  }, [logOut, navigate, queryClient]);
 
   return [axiosSecure];
 };

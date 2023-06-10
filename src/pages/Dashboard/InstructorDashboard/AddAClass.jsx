@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../../providers/AuthProviders";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddAClass = () => {
   const { user } = useContext(AuthContext);
@@ -37,7 +38,17 @@ const AddAClass = () => {
       body: JSON.stringify(newClass),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        if (data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Class added successfully ",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
 
   console.log("console outside", newClass);

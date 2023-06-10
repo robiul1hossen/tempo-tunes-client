@@ -6,7 +6,7 @@ const MyClasses = () => {
   const [classes, setClasses] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/classes?email=${user?.email}`)
+    fetch(`http://localhost:5000/allclasses`)
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);
@@ -18,7 +18,6 @@ const MyClasses = () => {
       });
   }, [user]);
   const instructorClasses = classes.filter((allClass) => allClass.email === user.email);
-  console.log(instructorClasses);
 
   return (
     <div>

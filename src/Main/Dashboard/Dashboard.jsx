@@ -62,8 +62,8 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/mycart">
-                  <FaBars></FaBars> Manage Items
+                <NavLink to="/dashboard/manageclasses">
+                  <FaBars></FaBars> Manage Classes
                   <span className="indicator-item badge badge-secondary"></span>
                 </NavLink>
               </li>
