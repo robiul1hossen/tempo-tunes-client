@@ -4,7 +4,6 @@ import { useContext, useEffect, useState } from "react";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user);
 
   const [users, setUsers] = useState([]);
   useEffect(() => {
@@ -44,7 +43,7 @@ const Navbar = () => {
         <Link to="/instructorpage">Instructors</Link>
       </li>
       <li>
-        <Link>Classes</Link>
+        <Link to="approvedclasses">Classes</Link>
       </li>
       {user && (
         <li>

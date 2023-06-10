@@ -12,6 +12,7 @@ import AddAClass from "../pages/Dashboard/InstructorDashboard/AddAClass";
 import MyClasses from "../pages/Dashboard/InstructorDashboard/MyClasses/MyClasses";
 import InstructorPage from "../pages/Home/InstructorPage/InstructorPage";
 import ManageClasses from "../pages/Dashboard/AdminDashboard/ManageClasses";
+import AllApprovedClasses from "../pages/AllApprovedClasses/AllApprovedClasses";
 
 export const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: "/instructorpage",
         element: <InstructorPage></InstructorPage>,
+      },
+      {
+        path: "/approvedclasses",
+        element: <AllApprovedClasses></AllApprovedClasses>,
       },
       {
         path: "/login",
