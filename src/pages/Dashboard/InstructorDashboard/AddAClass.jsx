@@ -24,6 +24,7 @@ const AddAClass = () => {
       price,
       seats,
       image: photo,
+      status: "pending",
     };
 
     console.log("console inside", newClass);

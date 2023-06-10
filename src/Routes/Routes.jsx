@@ -9,6 +9,8 @@ import AllStudents from "../pages/Dashboard/AdminDashboard/AllStudents";
 import InstructorDashboard from "../pages/Dashboard/InstructorDashboard/InstructorDashboard";
 import StudentHome from "../pages/Dashboard/StudentDahsboard/StudentHome";
 import AddAClass from "../pages/Dashboard/InstructorDashboard/AddAClass";
+import MyClasses from "../pages/Dashboard/InstructorDashboard/MyClasses/MyClasses";
+import InstructorPage from "../pages/Home/InstructorPage/InstructorPage";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +20,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/instructorpage",
+        element: <InstructorPage></InstructorPage>,
       },
       {
         path: "/login",
@@ -48,6 +54,10 @@ export const router = createBrowserRouter([
       {
         path: "addaclass",
         element: <AddAClass></AddAClass>,
+      },
+      {
+        path: "myclasses",
+        element: <MyClasses></MyClasses>,
       },
       {
         path: "studenthome",

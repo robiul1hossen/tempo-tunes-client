@@ -1,9 +1,31 @@
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  console.log(user);
+
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/students")
+      .then((res) => res.json())
+      .then((data) => {
+        setUsers(data);
+      });
+  }, []);
+
+  let isAdmin = false;
+  let isInstructor = false;
+  let isStudent = false;
+  const loggedUser = users.find((singleUser) => singleUser?.email === user?.email);
+  if (loggedUser?.role === "admin") {
+    isAdmin = true;
+  } else if (loggedUser?.role === "instructor") {
+    isInstructor = true;
+  } else {
+    isStudent = true;
+  }
 
   const handleLogout = () => {
     logOut()
@@ -19,14 +41,22 @@ const Navbar = () => {
         <Link>Home</Link>
       </li>
       <li>
-        <Link>Instructors</Link>
+        <Link to="/instructorpage">Instructors</Link>
       </li>
       <li>
         <Link>Classes</Link>
       </li>
-      <li>
-        <Link to="/dashboard">Dashboard </Link>
-      </li>
+      {user && (
+        <li>
+          {isAdmin ? (
+            <Link to="/dashboard/allstudents">Dashboard </Link>
+          ) : isInstructor ? (
+            <Link to="/dashboard/myclasses">Dashboard </Link>
+          ) : (
+            <Link to="/dashboard/userhome">Dashboard </Link>
+          )}
+        </li>
+      )}
     </>
   );
 

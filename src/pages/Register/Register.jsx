@@ -37,7 +37,7 @@ const Register = () => {
         return updateUserProfile(name, photo)
           .then(() => {
             console.log("user profile updated");
-            const savedUser = { name: data.name, email: data.email };
+            const savedUser = { name: data.name, email: data.email, photo: data.photo };
             console.log(savedUser);
             fetch("http://localhost:5000/students", {
               method: "POST",

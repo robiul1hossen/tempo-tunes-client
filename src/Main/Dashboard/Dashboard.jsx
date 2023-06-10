@@ -91,7 +91,7 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/mycart">
+                <NavLink to="/dashboard/myclasses">
                   <FaShoppingCart></FaShoppingCart> My Class
                   <span className="indicator-item badge badge-secondary"></span>
                 </NavLink>
