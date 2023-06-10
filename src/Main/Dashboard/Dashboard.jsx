@@ -81,12 +81,12 @@ const Dashboard = () => {
           ) : isInstructor ? (
             <>
               <li>
-                <NavLink to="/dashboard/userhome">
+                <NavLink to="/dashboard/instructorDashboard">
                   <FaHome></FaHome> Instructor Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/reservations">
+                <NavLink to="/dashboard/addaclass">
                   <FaCalendarAlt></FaCalendarAlt> Add a Class
                 </NavLink>
               </li>
