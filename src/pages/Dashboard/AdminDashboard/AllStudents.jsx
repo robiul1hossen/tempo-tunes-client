@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 const AllStudents = () => {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/students")
+    fetch("http://localhost:5000/allusers")
       .then((res) => res.json())
       .then((data) => setStudents(data));
   }, []);
@@ -23,8 +24,14 @@ const AllStudents = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Changed the role successfully ",
+          showConfirmButton: false,
+          timer: 1500,
+        });
 
-        // Update the students array with the updated student
         const updatedStudents = students.map((s) =>
           s.email === student.email ? { ...s, role: selectedRole } : s
         );
@@ -45,7 +52,7 @@ const AllStudents = () => {
         </thead>
         <tbody>
           {students.map((student) => (
-            <tr key={student.email}>
+            <tr key={student._id}>
               <td className="font-bold">{student.name}</td>
               <td>{student.email}</td>
               <td>
@@ -53,7 +60,7 @@ const AllStudents = () => {
                   <select
                     className="select select-bordered"
                     onChange={(event) => changeRole(event, student)}
-                    disabled={student.role !== "student"} // Disable the select when the role is not "student"
+                    disabled={student.role !== "student"}
                   >
                     <option value="student">Student</option>
                     <option value="admin">Admin</option>

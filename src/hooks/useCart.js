@@ -8,14 +8,14 @@ const useCart = () => {
   const {
     isLoading,
     refetch,
-    data: classes = [],
+    data: students = [],
   } = useQuery({
-    queryKey: ["classes", user?.email],
+    queryKey: ["students", user?.email],
     queryFn: async () => {
       const res = await fetch(`http://localhost:5000/classes?email=${user?.email}`);
       return res.json;
     },
   });
-  return [classes, isLoading, refetch];
+  return [students, isLoading, refetch];
 };
 export default useCart;

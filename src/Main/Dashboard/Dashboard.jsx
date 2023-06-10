@@ -1,3 +1,4 @@
+import { useContext, useEffect, useState } from "react";
 import {
   FaBars,
   FaBook,
@@ -11,9 +12,31 @@ import {
   FaWallet,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  const { user } = useContext(AuthContext);
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/students")
+      .then((res) => res.json())
+      .then((data) => {
+        setUsers(data);
+      });
+  }, []);
+
+  let isAdmin = false;
+  let isInstructor = false;
+  let isStudent = false;
+  const loggedUser = users.find((singleUser) => singleUser.email === user.email);
+  if (loggedUser?.role === "admin") {
+    isAdmin = true;
+  } else if (loggedUser?.role === "instructor") {
+    isInstructor = true;
+  } else {
+    isStudent = true;
+  }
+
   return (
     <div className="drawer md:drawer-open">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -55,21 +78,45 @@ const Dashboard = () => {
                 </NavLink>
               </li>
             </>
-          ) : (
+          ) : isInstructor ? (
             <>
               <li>
                 <NavLink to="/dashboard/userhome">
-                  <FaHome></FaHome> User Home
+                  <FaHome></FaHome> Instructor Home
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/reservations">
-                  <FaCalendarAlt></FaCalendarAlt> Reservations
+                  <FaCalendarAlt></FaCalendarAlt> Add a Class
                 </NavLink>
               </li>
               <li>
                 <NavLink to="/dashboard/mycart">
-                  <FaShoppingCart></FaShoppingCart> My Cart
+                  <FaShoppingCart></FaShoppingCart> My Class
+                  <span className="indicator-item badge badge-secondary"></span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/history">
+                  <FaWallet></FaWallet>Payment History
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <NavLink to="/dashboard/userhome">
+                  <FaHome></FaHome> Student Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/reservations">
+                  <FaCalendarAlt></FaCalendarAlt> Selected Classes
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/mycart">
+                  <FaShoppingCart></FaShoppingCart> Enrolled Classes
                   <span className="indicator-item badge badge-secondary"></span>
                 </NavLink>
               </li>
