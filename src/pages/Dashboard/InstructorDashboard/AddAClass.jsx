@@ -29,7 +29,7 @@ const AddAClass = () => {
       enrolled: 0,
     };
 
-    console.log("console inside", newClass);
+
 
     fetch("http://localhost:5000/classes", {
       method: "POST",
