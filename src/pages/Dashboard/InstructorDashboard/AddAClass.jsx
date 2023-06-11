@@ -14,8 +14,8 @@ const AddAClass = () => {
     const instrument = form.instrument.value;
     const instructor = form.instructor.value;
     const email = form.email.value;
-    const price = form.price.value;
-    const seats = form.seats.value;
+    const price = parseInt(form.price.value);
+    const seats = parseInt(form.seats.value);
     const photo = form.photo.value;
 
     newClass = {
@@ -26,6 +26,7 @@ const AddAClass = () => {
       seats,
       image: photo,
       status: "pending",
+      enrolled: 0,
     };
 
     console.log("console inside", newClass);

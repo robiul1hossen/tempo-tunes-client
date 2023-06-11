@@ -105,12 +105,12 @@ const Dashboard = () => {
           ) : (
             <>
               <li>
-                <NavLink to="/dashboard/userhome">
+                <NavLink to="/dashboard/studenthome">
                   <FaHome></FaHome> Student Home
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/reservations">
+                <NavLink to="/dashboard/selectedclass">
                   <FaCalendarAlt></FaCalendarAlt> Selected Classes
                 </NavLink>
               </li>

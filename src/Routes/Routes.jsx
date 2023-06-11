@@ -13,6 +13,7 @@ import MyClasses from "../pages/Dashboard/InstructorDashboard/MyClasses/MyClasse
 import InstructorPage from "../pages/Home/InstructorPage/InstructorPage";
 import ManageClasses from "../pages/Dashboard/AdminDashboard/ManageClasses";
 import AllApprovedClasses from "../pages/AllApprovedClasses/AllApprovedClasses";
+import MySelectedClasses from "../pages/Dashboard/StudentDahsboard/MySelectedClasses";
 
 export const router = createBrowserRouter([
   {
@@ -72,6 +73,10 @@ export const router = createBrowserRouter([
       {
         path: "studenthome",
         element: <StudentHome></StudentHome>,
+      },
+      {
+        path: "selectedclass",
+        element: <MySelectedClasses></MySelectedClasses>,
       },
     ],
   },

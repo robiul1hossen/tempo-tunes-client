@@ -52,7 +52,7 @@ const Navbar = () => {
           ) : isInstructor ? (
             <Link to="/dashboard/myclasses">Dashboard </Link>
           ) : (
-            <Link to="/dashboard/userhome">Dashboard </Link>
+            <Link to="/dashboard/studenthome">Dashboard </Link>
           )}
         </li>
       )}
