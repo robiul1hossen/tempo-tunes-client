@@ -1,0 +1,19 @@
+.featured {
+  background-image: url("../../../assets/banner/banner3.jpg");
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: -1;
+}
+.featured::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  background-color: rgba(21, 21, 21, 0.7);
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

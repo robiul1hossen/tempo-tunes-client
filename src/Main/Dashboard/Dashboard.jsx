@@ -56,22 +56,14 @@ const Dashboard = () => {
                   <FaHome></FaHome> Admin Home
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/addItem">
-                  <FaUtensils></FaUtensils> Add Items
-                </NavLink>
-              </li>
+
               <li>
                 <NavLink to="/dashboard/manageclasses">
                   <FaBars></FaBars> Manage Classes
                   <span className="indicator-item badge badge-secondary"></span>
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/manageitems">
-                  <FaBook></FaBook> Manage Bookings
-                </NavLink>
-              </li>
+
               <li>
                 <NavLink to="/dashboard/allstudents">
                   <FaUsers></FaUsers> All Students

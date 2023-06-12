@@ -14,6 +14,7 @@ import InstructorPage from "../pages/Home/InstructorPage/InstructorPage";
 import ManageClasses from "../pages/Dashboard/AdminDashboard/ManageClasses";
 import AllApprovedClasses from "../pages/AllApprovedClasses/AllApprovedClasses";
 import MySelectedClasses from "../pages/Dashboard/StudentDahsboard/MySelectedClasses";
+import Error from "../pages/Error/Error";
 
 export const router = createBrowserRouter([
   {
@@ -79,5 +80,9 @@ export const router = createBrowserRouter([
         element: <MySelectedClasses></MySelectedClasses>,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <Error></Error>,
   },
 ]);

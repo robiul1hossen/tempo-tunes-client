@@ -1,5 +1,5 @@
 .main-register {
-  background-image: url(../../assets/login/login.jpg);
+  background-image: url(../../assets/login/bg.gif);
   position: relative;
 }
 .main-register::before {

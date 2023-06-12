@@ -17,7 +17,7 @@ import slider9 from "../../../assets/slider images/9.jpg";
 
 const Slider = () => {
   return (
-    <>
+    <div className="my-20">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}
@@ -62,7 +62,7 @@ const Slider = () => {
           <img className="h-[75vh]" src={slider9} />
         </SwiperSlide>
       </Swiper>
-    </>
+    </div>
   );
 };
 

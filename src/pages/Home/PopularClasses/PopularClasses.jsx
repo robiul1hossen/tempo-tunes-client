@@ -11,20 +11,21 @@ const PopularClasses = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-3 gap-5 my-10">
+    <div className="grid md:grid-cols-4 gap-5 my-10">
       {popular.map((item) => (
         <>
-          <div className="card card-compact w-96 bg-base-100 shadow-xl">
+          <div className="card bg-base-100 shadow-xl space-y-0">
             <figure>
-              <img className="h-96 w-full" src={item.image} alt="Shoes" />
+              <img className="h-[300px] w-full" src={item.image} alt="Shoes" />
             </figure>
             <div className="card-body">
-              <h2 className="card-title">{item.instructor}</h2>
-              <p>{item.instructor}</p>
+              <h2 className="card-title"> Class Name :{item.instrument}</h2>
+              <h2 className="card-title">Instructor : {item.instructor}</h2>
               <p>Fees : ${item.price}</p>
               <p>Seats : {item.seats}</p>
-              <div className="card-actions justify-end">
-                <button className="btn btn-primary">Select</button>
+              <p>Students : {item.enrolled || 0}</p>
+              <div className="w-full">
+                <button className="btn btn-primary btn-outline w-full">Select</button>
               </div>
             </div>
           </div>
