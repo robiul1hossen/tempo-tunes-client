@@ -71,7 +71,6 @@ const Register = () => {
       });
   };
   const handleGoogleSignIn = () => {
-    console.log("clicked");
     signInGoogle()
       .then((result) => {
         const loggedUser = result.user;
@@ -185,22 +184,22 @@ const Register = () => {
               <div className="form-control mt-6">
                 <input className="btn btn-primary" type="submit" value="Register" />
               </div>
+              <div className="flex items-center justify-between mt-4">
+                <div>
+                  <small>
+                    Already have an account? Please{" "}
+                    <Link to="/login" className="font-bold">
+                      Login
+                    </Link>
+                  </small>
+                </div>
+                <div>
+                  <button onClick={handleGoogleSignIn} className="btn btn-circle btn-outline btn-sm">
+                    <FaGoogle></FaGoogle>
+                  </button>
+                </div>
+              </div>
             </form>
-            <div className="flex items-center justify-between mt-4">
-              <div>
-                <small>
-                  Already have an account? Please{" "}
-                  <Link to="/login" className="font-bold">
-                    Login
-                  </Link>
-                </small>
-              </div>
-              <div>
-                <button onClick={handleGoogleSignIn} className="btn btn-circle btn-outline btn-sm">
-                  <FaGoogle></FaGoogle>
-                </button>
-              </div>
-            </div>
           </div>
         </div>
       </div>

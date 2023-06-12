@@ -17,7 +17,7 @@ import slider9 from "../../../assets/slider images/9.jpg";
 
 const Slider = () => {
   return (
-    <div className="my-20">
+    <div className="mb-20">
       <Swiper
         effect={"coverflow"}
         grabCursor={true}

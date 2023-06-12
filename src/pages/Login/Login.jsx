@@ -4,9 +4,10 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 import { useContext } from "react";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
-  const { LoginUser } = useContext(AuthContext);
+  const { LoginUser, signInGoogle } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -34,6 +35,16 @@ const Login = () => {
         navigate(from, { replace: true });
       })
       .then((error) => {
+        console.log(error);
+      });
+  };
+  const handleGoogleSignIn = () => {
+    signInGoogle()
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+      })
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -107,14 +118,21 @@ const Login = () => {
               <div className="form-control mt-6">
                 <input className="btn btn-primary" type="submit" value="Login" />
               </div>
-              <p>
-                <small>
-                  Do not have an account? Please{" "}
-                  <Link to="/register" className="font-bold">
-                    Register
-                  </Link>
-                </small>
-              </p>
+              <div className="flex items-center justify-between mt-4">
+                <p>
+                  <small>
+                    Do not have an account? Please{" "}
+                    <Link to="/register" className="font-bold">
+                      Register
+                    </Link>
+                  </small>
+                </p>
+                <div>
+                  <button onClick={handleGoogleSignIn} className="btn btn-circle btn-outline btn-sm">
+                    <FaGoogle></FaGoogle>
+                  </button>
+                </div>
+              </div>
             </form>
           </div>
         </div>
