@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
@@ -37,6 +38,12 @@ const Login = () => {
       });
   };
 
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div>
       <div className="hero min-h-screen main-register my-5">
@@ -68,7 +75,7 @@ const Login = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   {...register("password", {
                     required: true,
                     minLength: 6,
@@ -79,7 +86,11 @@ const Login = () => {
                   placeholder="Password"
                   className="input input-bordered"
                 />
-
+                <p className="text-end">
+                  <small>
+                    <button onClick={togglePasswordVisibility}>{showPassword ? "Hide" : "Show"}</button>
+                  </small>
+                </p>
                 {errors.password?.type === "minLength" && (
                   <p className="text-red-600">Password must be 6 characters</p>
                 )}
@@ -88,12 +99,13 @@ const Login = () => {
                 )}
                 {errors.password?.type === "pattern" && (
                   <p className="text-red-600">
-                    Password must have one Uppercase one lower case, one number and one special character.
+                    Password must have one uppercase, one lowercase, one number, and one special character.
                   </p>
                 )}
               </div>
+
               <div className="form-control mt-6">
-                <input className="btn btn-primary" type="submit" value="Login " />
+                <input className="btn btn-primary" type="submit" value="Login" />
               </div>
               <p>
                 <small>
