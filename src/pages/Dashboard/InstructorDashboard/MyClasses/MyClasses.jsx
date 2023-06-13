@@ -3,26 +3,23 @@ import { AuthContext } from "../../../../providers/AuthProviders";
 
 const MyClasses = () => {
   const { user } = useContext(AuthContext);
-  const [classes, setClasses] = useState([]);
+  const [instructorClasses, setInstructorClasses] = useState([]);
   const accessToken = localStorage.getItem("access-token");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allclasses`, {
+    fetch(`http://localhost:5000/allclasses?userEmail=${user?.email}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     })
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
-        setClasses(data);
+        setInstructorClasses(data);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        // Handle the error
       });
-  }, [user]);
-  const instructorClasses = classes.filter((allClass) => allClass.email === user.email);
+  }, []);
 
   return (
     <div>
@@ -33,7 +30,6 @@ const MyClasses = () => {
           <thead>
             <tr>
               <th>#</th>
-
               <th>Enrolled Students</th>
               <th>Feedback</th>
               <th>Status</th>

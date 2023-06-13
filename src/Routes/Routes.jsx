@@ -15,6 +15,7 @@ import ManageClasses from "../pages/Dashboard/AdminDashboard/ManageClasses";
 import AllApprovedClasses from "../pages/AllApprovedClasses/AllApprovedClasses";
 import MySelectedClasses from "../pages/Dashboard/StudentDahsboard/MySelectedClasses";
 import Error from "../pages/Error/Error";
+import Payment from "../pages/Dashboard/StudentDahsboard/Payment";
 
 export const router = createBrowserRouter([
   {
@@ -78,6 +79,10 @@ export const router = createBrowserRouter([
       {
         path: "selectedclass",
         element: <MySelectedClasses></MySelectedClasses>,
+      },
+      {
+        path: "payment",
+        element: <Payment></Payment>,
       },
     ],
   },

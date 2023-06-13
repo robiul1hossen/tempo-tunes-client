@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 
 const PopularClasses = () => {
   const [popular, setPopular] = useState([]);
@@ -35,7 +35,9 @@ const PopularClasses = () => {
           <>
             <div className="card bg-base-100 shadow-xl space-y-0">
               <figure>
+                {/* <motion.button whileHover={{ scale: 1.1 }}> */}
                 <img className="h-[300px] w-full" src={item.image} alt="Shoes" />
+                {/* </motion.button> */}
               </figure>
               <div className="card-body">
                 <h2 className="card-title"> Class Name :{item.instrument}</h2>

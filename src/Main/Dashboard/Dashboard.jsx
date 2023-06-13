@@ -18,8 +18,13 @@ import Navbar from "../../shared/Navbar/Navbar";
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const [users, setUsers] = useState([]);
+  const accessToken = localStorage.getItem("access-token");
   useEffect(() => {
-    fetch("http://localhost:5000/students")
+    fetch("http://localhost:5000/students", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
