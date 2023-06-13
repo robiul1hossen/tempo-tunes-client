@@ -4,9 +4,14 @@ import { AuthContext } from "../../../../providers/AuthProviders";
 const MyClasses = () => {
   const { user } = useContext(AuthContext);
   const [classes, setClasses] = useState([]);
+  const accessToken = localStorage.getItem("access-token");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allclasses`)
+    fetch(`http://localhost:5000/allclasses`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         // console.log(data);

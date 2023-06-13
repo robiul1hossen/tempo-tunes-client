@@ -29,11 +29,11 @@ const AddAClass = () => {
       enrolled: 0,
     };
 
-
-
+    const accessToken = localStorage.getItem("access-token");
     fetch("http://localhost:5000/classes", {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${accessToken}`,
         "content-type": "application/json",
       },
       body: JSON.stringify(newClass),

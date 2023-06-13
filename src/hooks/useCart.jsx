@@ -16,6 +16,7 @@ const useCart = () => {
     const userClasses = data.filter((cls) => cls.email === user?.email);
     return userClasses;
   });
+  console.log(students);
 
   return [students, isLoading, refetch];
 };

@@ -3,8 +3,14 @@ import { motion } from "framer-motion";
 
 const PopularClasses = () => {
   const [popular, setPopular] = useState([]);
+  const accessToken = localStorage.getItem("access-token");
+
   useEffect(() => {
-    fetch("http://localhost:5000/classes")
+    fetch("http://localhost:5000/classes", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         setPopular(data);
