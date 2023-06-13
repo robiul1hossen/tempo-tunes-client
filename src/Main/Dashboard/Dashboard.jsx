@@ -96,13 +96,8 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <NavLink to="/dashboard/myclasses">
-                    <FaShoppingCart></FaShoppingCart> My Class
+                    <FaShoppingCart></FaShoppingCart> My Classes
                     <span className="indicator-item badge badge-secondary"></span>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink to="/dashboard/history">
-                    <FaWallet></FaWallet>Payment History
                   </NavLink>
                 </li>
               </>
@@ -138,13 +133,13 @@ const Dashboard = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/">
-                <FaBars></FaBars> Menu
+              <NavLink to="/instructorpage">
+                <FaBars></FaBars> Instructor
               </NavLink>
             </li>
             <li>
-              <NavLink to="/">
-                <FaShoppingBag></FaShoppingBag> Shopping
+              <NavLink to="/approvedclasses">
+                <FaShoppingBag></FaShoppingBag> Classes
               </NavLink>
             </li>
             <li>

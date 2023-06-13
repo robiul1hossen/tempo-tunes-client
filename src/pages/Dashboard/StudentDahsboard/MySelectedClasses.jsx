@@ -1,8 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../providers/AuthProviders";
 
 const MySelectedClasses = () => {
+  const { user } = useContext(AuthContext);
   const [classes, setClasses] = useState([]);
+  const accessToken = localStorage.getItem("access-token");
 
   useEffect(() => {
     fetchClasses();
@@ -10,7 +13,11 @@ const MySelectedClasses = () => {
 
   const fetchClasses = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/allclasses");
+      const response = await axios.get(`http://localhost:5000/selects?userEmail=${user?.email}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
       setClasses(response.data);
     } catch (error) {
       console.error("Error fetching classes:", error);

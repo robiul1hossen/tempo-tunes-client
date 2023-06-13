@@ -53,13 +53,13 @@ const Navbar = () => {
   const navItems = (
     <>
       <li>
-        <Link>Home</Link>
+        <Link to="/">Home</Link>
       </li>
       <li>
         <Link to="/instructorpage">Instructors</Link>
       </li>
       <li>
-        <Link to="approvedclasses">Classes</Link>
+        <Link to="/approvedclasses">Classes</Link>
       </li>
       {user && (
         <li>

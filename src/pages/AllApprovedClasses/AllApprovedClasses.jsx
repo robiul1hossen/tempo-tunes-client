@@ -177,16 +177,21 @@ import { AuthContext } from "../../providers/AuthProviders";
 const AllApprovedClasses = () => {
   const { user } = useContext(AuthContext);
   const [classes, setClasses] = useState([]);
+  const accessToken = localStorage.getItem("access-token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/allclasses")
+    fetch("http://localhost:5000/allclasses", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    })
       .then((response) => response.json())
       .then((data) => setClasses(data))
       .catch((error) => console.error("Error fetching classes:", error));
   }, []);
-  const approvedClasses = classes.filter((approvedClass) => approvedClass.status === "approved");
-  const accessToken = localStorage.getItem("access-token");
-  const userEmail = user?.email || "sakib20@khan.com";
+  const approvedClasses = classes?.filter((approvedClass) => approvedClass.status === "approved");
+
+  const userEmail = user?.email;
   console.log(userEmail);
 
   const handleSelectClass = async (singleClass) => {

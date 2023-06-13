@@ -39,7 +39,7 @@ const MyClasses = () => {
             {instructorClasses.map((singleClass, index) => (
               <tr key={singleClass._id}>
                 <th>{index + 1}</th>
-                <td>{singleClass?.enroll}</td>
+                <td>{singleClass?.enroll || 0}</td>
                 <td>Blue</td>
                 <td>{singleClass.status}</td>
                 <td>update</td>
