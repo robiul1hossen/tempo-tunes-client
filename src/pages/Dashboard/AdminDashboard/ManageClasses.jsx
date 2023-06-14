@@ -10,7 +10,7 @@ const ManageClasses = () => {
 
   const fetchClasses = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/allclasses");
+      const response = await axios.get("http://localhost:5000/allclass");
       setClasses(response.data);
     } catch (error) {
       console.error("Error fetching classes:", error);

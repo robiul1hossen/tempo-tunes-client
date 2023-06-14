@@ -36,17 +36,14 @@ const PaymentHistory = () => {
           </thead>
           <tbody>
             {/* row 1 */}
-            {payments.map((payment) => (
+            {payments.map((payment, index) => (
               <tr key={payment._id}>
-                <th>1</th>
+                <th>{index + 1}</th>
                 <td>
                   <div className="flex items-center space-x-3">
                     <div className="avatar">
                       <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src="/tailwind-css-component-profile-2@56w.png"
-                          alt="Avatar Tailwind CSS Component"
-                        />
+                        <img src={payment.image} alt="Avatar Tailwind CSS Component" />
                       </div>
                     </div>
                   </div>

@@ -76,6 +76,7 @@ const CheckoutForm = ({ amount }) => {
     console.log(paymentIntent);
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);
+      // save payment information to the server
 
       fetch("http://localhost:5000/payments", {
         method: "POST",

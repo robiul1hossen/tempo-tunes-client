@@ -53,45 +53,53 @@ const MySelectedClasses = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-semibold text-center mt-3 mb-5 bg-base-300 p-4">
-        All Classes I've selected
-      </h2>
-      <div className="overflow-x-auto">
-        <table className="table table-zebra">
-          {/* head */}
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Instructor</th>
-              <th>Price</th>
-              <th>Payment</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* row 1 */}
-            {classes.map((singleClass, index) => (
-              <tr key={singleClass._id}>
-                <th>{index + 1}</th>
-                <td>{singleClass.instrument}</td>
-                <td>{singleClass.instructor}</td>
-                <td>${singleClass.price}</td>
-                <td>
-                  <Link to="/dashboard/payment" state={singleClass}>
-                    <button className="btn btn-outline btn-sm">Pay Fees</button>
-                  </Link>
-                </td>
-                <td>
-                  <button onClick={() => handleDelete(singleClass._id)} className="btn btn-outline btn-sm">
-                    Delete
-                  </button>
-                </td>
+      {classes.length > 0 ? (
+        <h2 className="text-2xl font-semibold text-center mt-3 mb-5 bg-base-300 p-4">
+          Your Class Selection List : {classes.length}
+        </h2>
+      ) : (
+        <h2 className="text-2xl font-semibold text-center mt-3 mb-5 bg-base-300 p-4">
+          You did not select any class yet..
+        </h2>
+      )}
+      {classes.length > 0 && (
+        <div className="overflow-x-auto">
+          <table className="table table-zebra">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Instructor</th>
+                <th>Price</th>
+                <th>Payment</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+              {classes.map((singleClass, index) => (
+                <tr key={singleClass._id}>
+                  <th>{index + 1}</th>
+                  <td>{singleClass.instrument}</td>
+                  <td>{singleClass.instructor}</td>
+                  <td>${singleClass.price}</td>
+                  <td>
+                    <Link to="/dashboard/payment" state={singleClass}>
+                      <button className="btn btn-outline btn-sm">Pay Fees</button>
+                    </Link>
+                  </td>
+                  <td>
+                    <button onClick={() => handleDelete(singleClass._id)} className="btn btn-outline btn-sm">
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };

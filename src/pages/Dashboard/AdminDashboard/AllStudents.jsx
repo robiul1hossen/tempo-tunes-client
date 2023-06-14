@@ -7,7 +7,17 @@ const AllStudents = () => {
   useEffect(() => {
     fetch("http://localhost:5000/allusers")
       .then((res) => res.json())
-      .then((data) => setStudents(data));
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setStudents(data);
+        } else {
+          // Handle the case when data is not an array (e.g., an error occurred)
+          console.error("Invalid data format: ", data);
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching students: ", error);
+      });
   }, []);
 
   const changeRole = (event, student) => {
@@ -36,6 +46,9 @@ const AllStudents = () => {
           s.email === student.email ? { ...s, role: selectedRole } : s
         );
         setStudents(updatedStudents);
+      })
+      .catch((error) => {
+        console.error("Error changing role: ", error);
       });
   };
 
@@ -51,27 +64,28 @@ const AllStudents = () => {
           </tr>
         </thead>
         <tbody>
-          {students.map((student) => (
-            <tr key={student._id}>
-              <td className="font-bold">{student.name}</td>
-              <td>{student.email}</td>
-              <td>
-                {student.role === "student" ? (
-                  <select
-                    className="select select-bordered"
-                    onChange={(event) => changeRole(event, student)}
-                    disabled={student.role !== "student"}
-                  >
-                    <option value="student">Student</option>
-                    <option value="admin">Admin</option>
-                    <option value="instructor">Instructor</option>
-                  </select>
-                ) : (
-                  student.role
-                )}
-              </td>
-            </tr>
-          ))}
+          {Array.isArray(students) &&
+            students.map((student) => (
+              <tr key={student._id}>
+                <td className="font-bold">{student.name}</td>
+                <td>{student.email}</td>
+                <td>
+                  {student.role === "student" ? (
+                    <select
+                      className="select select-bordered"
+                      onChange={(event) => changeRole(event, student)}
+                      disabled={student.role !== "student"}
+                    >
+                      <option value="student">Student</option>
+                      <option value="admin">Admin</option>
+                      <option value="instructor">Instructor</option>
+                    </select>
+                  ) : (
+                    student.role
+                  )}
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </div>
