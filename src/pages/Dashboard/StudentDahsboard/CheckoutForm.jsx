@@ -11,6 +11,7 @@ const CheckoutForm = ({ amount }) => {
   const [cardError, setCardError] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const accessToken = localStorage.getItem("access-token");
+  const [transactionId, setTransactionId] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
@@ -19,7 +20,7 @@ const CheckoutForm = ({ amount }) => {
         Authorization: `Bearer ${accessToken}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(price),
+      body: JSON.stringify({ price }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -72,6 +73,22 @@ const CheckoutForm = ({ amount }) => {
       console.log(confirmError);
     }
     console.log(paymentIntent);
+    if (paymentIntent.status === "succeeded") {
+      setTransactionId(paymentIntent.id);
+      // save payment information to the server
+      const payment = {
+        email: user?.email,
+        transactionId: paymentIntent.id,
+        price,
+        date: new Date(),
+        quantity: cart?.length,
+        cartItems: cart?.map((item) => item._id),
+        menuItems: cart?.map((item) => item.foodItemId),
+        status: "service pending",
+        itemNames: cart?.map((item) => item.name),
+      };
+      console.log(payment);
+    }
   };
 
   return (
@@ -97,7 +114,10 @@ const CheckoutForm = ({ amount }) => {
           Pay
         </button>
       </form>
-      {cardError && <p className="text-red-600"> {cardError}</p>}
+      {cardError && <p className="text-red-600 ms-7"> {cardError}</p>}
+      {transactionId && (
+        <p className="text-green-500 ms-7">Transaction complete with transactionId: {transactionId}</p>
+      )}
     </>
   );
 };
