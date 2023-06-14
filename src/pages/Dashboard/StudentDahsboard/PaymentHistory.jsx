@@ -6,7 +6,7 @@ const PaymentHistory = () => {
   const [payments, setPayments] = useState([]);
   const accessToken = localStorage.getItem("access-token");
   useEffect(() => {
-    fetch(`http://localhost:5000/payments?userEmail=${user?.email}`, {
+    fetch(`https://tempo-tunes-server.vercel.app/payments?userEmail=${user?.email}`, {
       headers: {
         // "Content-Type": "application/json",
         Authorization: `Bearer ${accessToken}`,

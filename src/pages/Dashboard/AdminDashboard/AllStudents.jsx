@@ -5,7 +5,7 @@ const AllStudents = () => {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/allusers")
+    fetch("https://tempo-tunes-server.vercel.app/allusers")
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) {
@@ -24,7 +24,7 @@ const AllStudents = () => {
     const selectedRole = event.target.value;
     const updatedStudent = { ...student, role: selectedRole };
 
-    fetch(`http://localhost:5000/students/role/${student.email}`, {
+    fetch(`https://tempo-tunes-server.vercel.app/students/role/${student.email}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

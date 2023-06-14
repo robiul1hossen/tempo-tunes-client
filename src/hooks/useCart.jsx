@@ -10,7 +10,7 @@ const useCart = () => {
     refetch,
     data: students = [],
   } = useQuery(["students", user?.email], async () => {
-    const res = await fetch(`http://localhost:5000/classes?email=${user?.email}`);
+    const res = await fetch(`https://tempo-tunes-server.vercel.app/classes?email=${user?.email}`);
     const data = await res.json();
     // Filter classes based on user's email
     const userClasses = data.filter((cls) => cls.email === user?.email);

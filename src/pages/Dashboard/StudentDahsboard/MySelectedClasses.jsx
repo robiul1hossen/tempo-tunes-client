@@ -15,11 +15,14 @@ const MySelectedClasses = () => {
 
   const fetchClasses = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/selects?userEmail=${user?.email}`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+      const response = await axios.get(
+        `https://tempo-tunes-server.vercel.app/selects?userEmail=${user?.email}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
       setClasses(response.data);
     } catch (error) {
       console.error("Error fetching classes:", error);
@@ -29,7 +32,7 @@ const MySelectedClasses = () => {
   const handleDelete = (userId) => {
     console.log(userId);
 
-    fetch(`http://localhost:5000/selects?userEmail=${user?.email}&&_id=${userId}`, {
+    fetch(`https://tempo-tunes-server.vercel.app/selects?userEmail=${user?.email}&&_id=${userId}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${accessToken}`,

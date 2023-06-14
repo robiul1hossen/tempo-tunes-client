@@ -7,7 +7,7 @@ const MyClasses = () => {
   const accessToken = localStorage.getItem("access-token");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allclasses?userEmail=${user?.email}`, {
+    fetch(`https://tempo-tunes-server.vercel.app/allclasses?userEmail=${user?.email}`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

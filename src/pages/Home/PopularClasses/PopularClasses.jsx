@@ -6,7 +6,7 @@ const PopularClasses = () => {
   const accessToken = localStorage.getItem("access-token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/classes", {
+    fetch("https://tempo-tunes-server.vercel.app/classes", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
