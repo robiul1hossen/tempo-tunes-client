@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { CardElement, CartElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { AuthContext } from "../../../providers/AuthProviders";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const CheckoutForm = ({ amount }) => {
-  const { price } = amount;
+  const { price, instrument, instructor, email, image, _id } = amount;
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useContext(AuthContext);
@@ -75,19 +76,37 @@ const CheckoutForm = ({ amount }) => {
     console.log(paymentIntent);
     if (paymentIntent.status === "succeeded") {
       setTransactionId(paymentIntent.id);
-      // save payment information to the server
-      const payment = {
-        email: user?.email,
-        transactionId: paymentIntent.id,
-        price,
-        date: new Date(),
-        quantity: cart?.length,
-        cartItems: cart?.map((item) => item._id),
-        menuItems: cart?.map((item) => item.foodItemId),
-        status: "service pending",
-        itemNames: cart?.map((item) => item.name),
-      };
-      console.log(payment);
+
+      fetch("http://localhost:5000/payments", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userEmail: user?.email,
+          transactionId: paymentIntent.id,
+          price,
+          date: new Date(),
+          instructor: instructor,
+          className: instrument,
+          email: email,
+          image: image,
+          status: "Success",
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Payment Successful",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
     }
   };
 

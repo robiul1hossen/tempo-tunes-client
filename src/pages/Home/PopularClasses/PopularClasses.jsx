@@ -32,7 +32,7 @@ const PopularClasses = () => {
       </div>
       <div className="grid md:grid-cols-4 gap-5 my-10">
         {popular.map((item) => (
-          <>
+          <div key={item._id}>
             <div className="card bg-base-100 shadow-xl space-y-0">
               <figure>
                 {/* <motion.button whileHover={{ scale: 1.1 }}> */}
@@ -50,7 +50,7 @@ const PopularClasses = () => {
                 </div>
               </div>
             </div>
-          </>
+          </div>
         ))}
       </div>
     </>
