@@ -15,7 +15,7 @@ const Navbar = () => {
   }, [theme]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/students")
+    fetch("https://tempo-tunes-server.vercel.app/students")
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);

@@ -9,7 +9,7 @@ const AllApprovedClasses = () => {
   const accessToken = localStorage.getItem("access-token");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/allclass?status=approved`, {
+    fetch(`https://tempo-tunes-server.vercel.app/allclass?status=approved`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -21,7 +21,7 @@ const AllApprovedClasses = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/selects?userEmail=${user.email}`, {
+      fetch(`https://tempo-tunes-server.vercel.app/selects?userEmail=${user.email}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -56,7 +56,7 @@ const AllApprovedClasses = () => {
 
     const classesData = { ...singleClass, userEmail };
 
-    fetch("http://localhost:5000/selects", {
+    fetch("https://tempo-tunes-server.vercel.app/selects", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${accessToken}`,
