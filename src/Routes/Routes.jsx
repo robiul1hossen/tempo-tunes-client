@@ -18,29 +18,29 @@ import Error from "../pages/Error/Error";
 import Payment from "../pages/Dashboard/StudentDahsboard/Payment";
 import PaymentHistory from "../pages/Dashboard/StudentDahsboard/PaymentHistory";
 
-export const router = createBrowserRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
     children: [
       {
-        path: "/",
+        path: "",
         element: <Home></Home>,
       },
       {
-        path: "/instructorpage",
+        path: "instructorpage",
         element: <InstructorPage></InstructorPage>,
       },
       {
-        path: "/approvedclasses",
+        path: "approvedclasses",
         element: <AllApprovedClasses></AllApprovedClasses>,
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login></Login>,
       },
       {
-        path: "/register",
+        path: "register",
         element: <Register></Register>,
       },
     ],
@@ -92,7 +92,10 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "*",
+    path: "/*",
     element: <Error></Error>,
   },
 ]);
+
+console.log(router);
+export default router;

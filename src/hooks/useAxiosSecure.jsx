@@ -5,7 +5,7 @@ import { AuthContext } from "../providers/AuthProviders";
 import { useQueryClient } from "react-query";
 
 const axiosSecure = axios.create({
-  baseURL: "https://tempo-tunes-server.vercel.app",
+  baseURL: "http://localhost:5000",
 });
 
 const useAxiosSecure = () => {

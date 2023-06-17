@@ -30,7 +30,7 @@ const AddAClass = () => {
     };
 
     const accessToken = localStorage.getItem("access-token");
-    fetch("https://tempo-tunes-server.vercel.app/classes", {
+    fetch("http://localhost:5000/classes", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${accessToken}`,

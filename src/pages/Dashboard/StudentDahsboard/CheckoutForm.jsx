@@ -15,7 +15,7 @@ const CheckoutForm = ({ amount }) => {
   const [transactionId, setTransactionId] = useState("");
 
   useEffect(() => {
-    fetch("https://tempo-tunes-server.vercel.app/create-payment-intent", {
+    fetch("http://localhost:5000/create-payment-intent", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -78,7 +78,7 @@ const CheckoutForm = ({ amount }) => {
       setTransactionId(paymentIntent.id);
       // save payment information to the server
 
-      fetch("https://tempo-tunes-server.vercel.app/payments", {
+      fetch("http://localhost:5000/payments", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${accessToken}`,

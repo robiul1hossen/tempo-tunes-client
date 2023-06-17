@@ -10,7 +10,7 @@ const ManageClasses = () => {
 
   const fetchClasses = async () => {
     try {
-      const response = await axios.get("https://tempo-tunes-server.vercel.app/allclass");
+      const response = await axios.get("http://localhost:5000/allclass");
       setClasses(response.data);
     } catch (error) {
       console.error("Error fetching classes:", error);
@@ -19,7 +19,7 @@ const ManageClasses = () => {
 
   const approveClass = async (classId) => {
     try {
-      await axios.put(`https://tempo-tunes-server.vercel.app/classes/${classId}/approve`);
+      await axios.put(`http://localhost:5000/classes/${classId}/approve`);
       fetchClasses();
     } catch (error) {
       console.error("Error approving class:", error);
@@ -28,7 +28,7 @@ const ManageClasses = () => {
 
   const denyClass = async (classId) => {
     try {
-      await axios.put(`https://tempo-tunes-server.vercel.app/classes/${classId}/deny`);
+      await axios.put(`http://localhost:5000/classes/${classId}/deny`);
       fetchClasses();
     } catch (error) {
       console.error("Error denying class:", error);

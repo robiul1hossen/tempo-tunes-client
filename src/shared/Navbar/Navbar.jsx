@@ -9,7 +9,13 @@ const Navbar = () => {
   );
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch("https://tempo-tunes-server.vercel.app/students")
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/students")
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
@@ -23,12 +29,6 @@ const Navbar = () => {
       setThem("light");
     }
   };
-
-  useEffect(() => {
-    localStorage.setItem("theme", theme);
-    const localTheme = localStorage.getItem("theme");
-    document.querySelector("html").setAttribute("data-theme", localTheme);
-  }, [theme]);
 
   let isAdmin = false;
   let isInstructor = false;

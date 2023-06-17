@@ -9,7 +9,7 @@ const AllApprovedClasses = () => {
   const accessToken = localStorage.getItem("access-token");
 
   useEffect(() => {
-    fetch(`https://tempo-tunes-server.vercel.app/allclass?status=approved`, {
+    fetch(`http://localhost:5000/allclass?status=approved`, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
@@ -21,7 +21,7 @@ const AllApprovedClasses = () => {
 
   useEffect(() => {
     if (user) {
-      fetch(`https://tempo-tunes-server.vercel.app/selects?userEmail=${user.email}`, {
+      fetch(`http://localhost:5000/selects?userEmail=${user.email}`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
@@ -56,7 +56,7 @@ const AllApprovedClasses = () => {
 
     const classesData = { ...singleClass, userEmail };
 
-    fetch("https://tempo-tunes-server.vercel.app/selects", {
+    fetch("http://localhost:5000/selects", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -84,9 +84,9 @@ const AllApprovedClasses = () => {
     <div className="grid md:grid-cols-4 gap-10 my-10">
       {approvedClasses.map((singleClass) => (
         <div key={singleClass._id}>
-          <div className="card bg-base-100 shadow-xl">
+          <div className="card bg-base-100 shadow-xl ">
             <figure>
-              <img className="h-[300px] w-full" src={singleClass.image} alt="Shoes" />
+              <img data-aos="flip-left" className="h-[300px] w-full" src={singleClass.image} alt="Shoes" />
             </figure>
 
             <div className="card-body space-y-0">

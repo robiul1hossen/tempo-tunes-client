@@ -39,7 +39,7 @@ const Register = () => {
             console.log("user profile updated");
             const savedUser = { name: data.name, email: data.email, photo: data.photo };
             console.log(savedUser);
-            fetch("https://tempo-tunes-server.vercel.app/students", {
+            fetch("http://localhost:5000/students", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
