@@ -25,28 +25,41 @@ const PopularClasses = () => {
           <span className="text-warning">Best Enrolled</span> class here
         </h2>
         <p className="text-center text-muted  mb-3">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem <br /> perspiciatis quia
-          cupiditate voluptatum repudiandae officia.
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+          Exercitationem <br /> perspiciatis quia cupiditate voluptatum
+          repudiandae officia.
         </p>
         <div className="divider w-1/2 mx-auto"></div>
       </div>
-      <div className="grid md:grid-cols-4 gap-5 my-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 my-10">
         {popular &&
           popular.map((item) => (
             <div key={item._id}>
               <motion.div whileHover={{ scale: 1.1 }}>
                 <div className="card bg-base-100 shadow-xl space-y-0">
                   <figure>
-                    <img className="h-[300px] w-full" data-aos="flip-left" src={item.image} alt="Shoes" />
+                    <img
+                      className="h-[200px] w-full"
+                      data-aos="flip-left"
+                      src={item.image}
+                      alt="Shoes"
+                    />
                   </figure>
                   <div className="card-body">
-                    <h2 className="card-title"> Class Name :{item.instrument}</h2>
-                    <h2 className="card-title">Instructor : {item.instructor}</h2>
+                    <h2 className="card-title">
+                      {" "}
+                      Class Name :{item.instrument}
+                    </h2>
+                    <h2 className="card-title">
+                      Instructor : {item.instructor}
+                    </h2>
                     <p>Fees : ${item.price}</p>
                     <p>Seats : {item.seats}</p>
                     <p>Students : {item.enrolled || 0}</p>
                     <div className="w-full">
-                      <button className="btn btn-primary btn-outline w-full">Select</button>
+                      <button className="btn btn-primary btn-outline w-full">
+                        Select
+                      </button>
                     </div>
                   </div>
                 </div>
